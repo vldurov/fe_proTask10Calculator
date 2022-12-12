@@ -23,17 +23,6 @@ let rez;
 
 key.addEventListener("click", (e) => {
 
-        if(patern2.test(e.target.value)){
-            document.body.querySelector(".orange").removeAttribute("disabled");
-            symbl = e.target.value;
-            inf = display.value;
-            display.value = "";
-        };
-
-        if(patern.test(e.target.value)){
-            display.value += e.target.value;  
-        };
-
         if(e.target.value == "m+"){
             memory = display.value;
             memFlag = false;
@@ -46,6 +35,17 @@ key.addEventListener("click", (e) => {
             };
         };
 
+        if(patern2.test(e.target.value)){
+            document.body.querySelector(".orange").removeAttribute("disabled");
+            symbl = e.target.value;
+            inf = parseFloat(display.value);
+            display.value = "";
+        };
+
+        if(patern.test(e.target.value)){
+            display.value += e.target.value;  
+        };
+
         if(e.target.value == "m-"){
             memory = null;
             document.querySelector(".memory").remove();
@@ -53,11 +53,12 @@ key.addEventListener("click", (e) => {
         };
 
         if(e.target.value == "mrc"){
+            display.value = memory;
             if(memFlag == true){
                 memory = null;
                 document.querySelector(".memory").remove();
             };
-            display.value = memory;
+            
             memFlag = true;
             divFlag = false;
         };
@@ -72,20 +73,20 @@ key.addEventListener("click", (e) => {
         };
 
         if(e.target.value == "=") {
-            inf2 = display.value;
+            inf2 = parseFloat(display.value);
 
             switch (symbl){
             case "+" :
-                rez = parseInt(inf) + parseInt(inf2);
+                rez = parseFloat(inf) + parseFloat(inf2);
                 break;
             case "-":
-                rez = parseInt(inf) - parseInt(inf2);
+                rez = parseFloat(inf) - parseFloat(inf2);
                 break;
             case "*":
-                rez = parseInt(inf) * parseInt(inf2);
+                rez = parseFloat(inf) * parseFloat(inf2);
                 break;
             case "/":
-                rez = parseInt(inf) / parseInt(inf2);
+                rez = parseFloat(inf) / parseFloat(inf2);
                 break;
             };
             display.value = rez;
